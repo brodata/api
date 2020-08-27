@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BroData.API", "BroData.API\BroData.API.csproj", "{F1697A23-77EF-42DF-89AA-9954C7725276}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1697A23-77EF-42DF-89AA-9954C7725276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1697A23-77EF-42DF-89AA-9954C7725276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1697A23-77EF-42DF-89AA-9954C7725276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1697A23-77EF-42DF-89AA-9954C7725276}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E1CB294-E5CA-44ED-910A-92F0EA325AF0}
+	EndGlobalSection
+EndGlobal
