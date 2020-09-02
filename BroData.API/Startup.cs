@@ -31,6 +31,7 @@ namespace BroData.API
             services.AddMvc();
             services.AddSingleton<IBroPasswdService, BroPasswdService>();
             services.AddSingleton<IBroNameService, BroNameService>();
+            services.AddSingleton<IBroTelephonService, BroTelephonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

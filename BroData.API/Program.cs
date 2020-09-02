@@ -35,6 +35,7 @@ namespace BroData.API
                         serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
                         serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);    
                     })
+                    .UseUrls("http://0.0.0.0:5000")
                     .UseStartup<Startup>();
                 });
     }

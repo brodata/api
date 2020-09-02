@@ -16,10 +16,10 @@ namespace BroData.API.Models.v0
         }
         public Tuple<object, object> Get(object response, bool status)
         {
-            if (status == false)
+            //if (status == false)
                 return new Tuple<object, object>(new Error("TEST"), response);
-            if (status == true)
-                return new Tuple<object, object>(new Response("TEST"), response);
+            //if (status == true)
+              //  return new Tuple<object, object>(new Response("TEST"), response);
 
         }
     }
