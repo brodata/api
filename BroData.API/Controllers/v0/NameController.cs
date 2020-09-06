@@ -11,16 +11,16 @@ namespace BroData.API.Controllers.v0
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BroNameController : ControllerBase
+    public class NameController : ControllerBase
     {
-        private readonly IBroNameService _broNameService;
+        private readonly INameService _broNameService;
 
-        public BroNameController(IBroNameService broNameService) => _broNameService = broNameService;
+        public NameController(INameService broNameService) => _broNameService = broNameService;
 
         [HttpGet]
         async public Task<IActionResult> GetDateTime()
         {
-            return await Task.FromResult(Ok(new Response<IBroName>(_broNameService.Name)));
+            return await Task.FromResult(Ok(new Response<IName>(_broNameService.GetRandom())));
         }
     }
 }

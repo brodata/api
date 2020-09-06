@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace BroData.API.Service.v0
 {
-    public class BroPasswdService : IBroPasswdService
+    public class PasswdService : IPasswdService
     {
-        public IBroPasswd Get(int count, int _length, int[] mask)
+        public IPasswd Get(int count, int _length, int[] mask)
         {
             if (count == 1)
-                return new BroPasswd(new PasswordGenerator(_length, mask).GetPassword());
+                return new Passwd(new PasswordGenerator(_length, mask).GetPassword());
             List<string> massiv = new List<string>();
             for(int i = 0; i < count; i++)
                 massiv.Add(new PasswordGenerator(_length, mask).GetPassword());
-            return new BroPasswd(massiv);
+            return new Passwd(massiv);
         }
     }
 
-    public interface IBroPasswdService
+    public interface IPasswdService
     {
-        IBroPasswd Get(int count, int _length, int[] mask);
+        IPasswd Get(int count, int _length, int[] mask);
 
     }
 

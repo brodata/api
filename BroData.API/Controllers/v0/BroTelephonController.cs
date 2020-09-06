@@ -28,7 +28,7 @@ namespace BroData.API.Controllers.v0
         {
             if (len > 1024)
                 return StatusCode(400, new Error("Max len: 1024"));
-            return Ok(new Response<IBroPasswd>(_broTelephonService.Get(count: len)));
+            return Ok(new Response<IPasswd>(_broTelephonService.Get(count: len)));
         }
     }
 }
