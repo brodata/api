@@ -49,6 +49,7 @@ namespace BroData.API
             services.AddScoped<ICityService, CityService>();
             services.AddTransient<IISO3166Service, ISO3166Service>();
             services.AddScoped<INameService, NameService>();
+            services.AddTransient<ISurnameService, SurnameService>();
             services.AddTransient<IGenEmailService, GenEmailService>();
 
             services.AddCors(options =>
