@@ -29,9 +29,9 @@ namespace BroData.API
 
         public void InitialStorage(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString("ConnectionString");
-            services.AddDbContext<StorageBroker>(context => context.UseNpgsql("Host=testdb;Database=test;Username=test_read_only;Password=test"));
+            services.AddDbContext<StorageBroker>(context => context.UseNpgsql(Configuration["ConnectionString"]));
         }
+
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -49,7 +49,7 @@ namespace BroData.API
             services.AddScoped<ICityService, CityService>();
             services.AddTransient<IISO3166Service, ISO3166Service>();
             services.AddScoped<INameService, NameService>();
-            //services.AddScoped<INameService, NameService>();
+            services.AddTransient<IGenEmailService, GenEmailService>();
 
             services.AddCors(options =>
             {
