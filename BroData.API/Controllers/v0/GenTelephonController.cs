@@ -11,16 +11,16 @@ namespace BroData.API.Controllers.v0
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BroTelephonController : ControllerBase
+    public class GenTelephonController : ControllerBase
     {
-        private readonly IBroTelephonService _broTelephonService;
+        private readonly IGenTelephonService _broTelephonService;
 
-        public BroTelephonController(IBroTelephonService broPasswdService) => _broTelephonService = broPasswdService;
+        public GenTelephonController(IGenTelephonService broPasswdService) => _broTelephonService = broPasswdService;
 
         [HttpGet]
         public IActionResult GetTelephon()
         {
-            return Ok(new Response<IBroTelephon>(_broTelephonService.Get()));
+            return Ok(new Response<ITelephon>(_broTelephonService.Get()));
         }
 
         [HttpGet("{len}")]

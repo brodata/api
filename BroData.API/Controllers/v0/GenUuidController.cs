@@ -11,13 +11,13 @@ namespace BroData.API.Controllers.v0
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BroUuidController : ControllerBase
+    public class GenUuidController : ControllerBase
     {
         [HttpGet]
         async public Task<IActionResult> GetUuuid()
         {
             return await Task.FromResult(Ok(
-                    new Response<IBroUuid>(
+                    new Response<IUuid>(
                         new BroUuid(Guid.NewGuid()))));
         }
 
@@ -29,7 +29,7 @@ namespace BroData.API.Controllers.v0
             List <Guid> massiv = new List<Guid>();
             for (int i = 0; i < count; i++)
                 massiv.Add(Guid.NewGuid());
-            return Ok(new Response<IBroUuid>(new BroUuid(massiv)));
+            return Ok(new Response<IUuid>(new BroUuid(massiv)));
         }
     }
 }

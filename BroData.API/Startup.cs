@@ -44,8 +44,8 @@ namespace BroData.API
 
             services.AddControllers();
             services.AddMvc();
-            services.AddSingleton<IPasswdService, PasswdService>();
-            services.AddSingleton<IBroTelephonService, BroTelephonService>();
+            services.AddSingleton<IGenPasswdService, GenPasswdService>();
+            services.AddSingleton<IGenTelephonService, GenTelephonService>();
             services.AddScoped<ICityService, CityService>();
             services.AddTransient<IISO3166Service, ISO3166Service>();
             services.AddScoped<INameService, NameService>();

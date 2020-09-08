@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace BroData.API.Service.v0
 {
-    public class BroTelephonService : IBroTelephonService
+    public class GenTelephonService : IGenTelephonService
     {
-        public IBroTelephon Get(string code = null, int? len = null, int count = 1)
+        public ITelephon Get(string code = null, int? len = null, int count = 1)
         {
             if (count == 1)
-                return new BroTelephon(Gen(code, len));
+                return new Telephon(Gen(code, len));
             List<string> massiv = new List<string>();
             for (int i = 0; i < count; i++)
                 massiv.Add(Gen(code, len));
-            return new BroTelephon(massiv);
+            return new Telephon(massiv);
         }
 
         
@@ -40,8 +40,8 @@ namespace BroData.API.Service.v0
         }
     }
 
-    public interface IBroTelephonService
+    public interface IGenTelephonService
     {
-        IBroTelephon Get(string code = null, int? len = null, int count = 1);
+        ITelephon Get(string code = null, int? len = null, int count = 1);
     }
 }

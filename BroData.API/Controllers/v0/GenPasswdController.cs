@@ -8,16 +8,16 @@ namespace BroData.API.Controllers.v0
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PasswdController : ControllerBase 
+    public class GenPasswdController : ControllerBase 
     {
-        private readonly IPasswdService _broPasswdService;
+        private readonly IGenPasswdService _genPasswdService;
 
-        public PasswdController(IPasswdService broPasswdService) => _broPasswdService = broPasswdService;
+        public GenPasswdController(IGenPasswdService broPasswdService) => _genPasswdService = broPasswdService;
 
         [HttpGet]
         public IActionResult GetPasswd()
         {
-            return Ok(new Response<IPasswd>(_broPasswdService.Get(1, 12, new int[] { 1, 1, 1, 1 })));
+            return Ok(new Response<IPasswd>(_genPasswdService.Get(1, 12, new int[] { 1, 1, 1, 1 })));
         }
 
         [HttpGet("{len}")]
@@ -25,7 +25,7 @@ namespace BroData.API.Controllers.v0
         {
             if (len > 1024)
                 return StatusCode(400, new Error("Max len: 1024"));
-            return Ok(new Response<IPasswd>(_broPasswdService.Get(1, len, new int[] { 1, 1, 1, 1 })));
+            return Ok(new Response<IPasswd>(_genPasswdService.Get(1, len, new int[] { 1, 1, 1, 1 })));
         }
 
         [HttpGet("{len}:{bitmask}")]
@@ -38,7 +38,7 @@ namespace BroData.API.Controllers.v0
             int[] bin_mask = new int[4];
             for (int i = 0; i < bitmask.Length; i++)
                 bin_mask[i] = bitmask[i] - '0';
-            return Ok(new Response<IPasswd>(_broPasswdService.Get(1, len, bin_mask)));
+            return Ok(new Response<IPasswd>(_genPasswdService.Get(1, len, bin_mask)));
         }
 
         [HttpGet("{len}:{bitmask}/{count}")]
@@ -72,7 +72,7 @@ namespace BroData.API.Controllers.v0
                 if (chech_mask == 0)
                     return StatusCode(400, new Error("Mask not valid!"));
                 //throw new ArgumentException("Mask not valid!");
-                return Ok(new Response<IPasswd>(_broPasswdService.Get(count, len, bin_mask)));
+                return Ok(new Response<IPasswd>(_genPasswdService.Get(count, len, bin_mask)));
             }
             else
                 return StatusCode(400, new Error("Bitmask don't have value"));

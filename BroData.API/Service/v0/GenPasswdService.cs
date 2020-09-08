@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BroData.API.Service.v0
 {
-    public class PasswdService : IPasswdService
+    public class GenPasswdService : IGenPasswdService
     {
         public IPasswd Get(int count, int _length, int[] mask)
         {
@@ -21,7 +21,7 @@ namespace BroData.API.Service.v0
         }
     }
 
-    public interface IPasswdService
+    public interface IGenPasswdService
     {
         IPasswd Get(int count, int _length, int[] mask);
 

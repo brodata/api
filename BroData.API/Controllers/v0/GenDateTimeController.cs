@@ -11,12 +11,12 @@ namespace BroData.API.Controllers.v0
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BroDateTimeController : ControllerBase
+    public class GenDateTimeController : ControllerBase
     {
         [HttpGet]
         public IActionResult GetDateTime()
         {
-            return Ok(new Response<IBroDateTime>(new BroDateTime()));
+            return Ok(new Response<IBroDateTime>(new GenDateTime()));
         }
 
         [HttpGet("{format}")]
@@ -25,7 +25,7 @@ namespace BroData.API.Controllers.v0
             string[] allow_format = { "d", "D", "f", "F", "g", "G", "m", "r", "s", "t", "T", "u", "U", "y" };
             foreach(string tmp in allow_format)
                 if (tmp == format)
-                    return Ok(new Response<IBroDateTime>(new BroDateTime(format)));
+                    return Ok(new Response<IBroDateTime>(new GenDateTime(format)));
             return StatusCode(400, new Error("Format not valid!"));
         }
     }
