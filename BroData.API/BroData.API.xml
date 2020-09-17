@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BroData.API</name>
+    </assembly>
+    <members>
+        <member name="M:BroData.API.Controllers.v0.CitiesController.GetAll">
+            <summary>
+            Gets the list of all US Cities.
+            </summary>
+            <returns>The list of City.</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.CitiesController.GetByState(System.String)">
+            <summary>
+            Gets by State the list of all US Cities.
+            </summary>
+            <returns>The list of City.</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.CitiesController.GetByID(System.Int32)">
+            <summary>
+            Gets by ID the of US Cities.
+            </summary>
+            <returns>The item of City.</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.DateTimeController.GetDateTimeAsync">
+            <summary>
+            Gets DateTime.
+            </summary>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.DateTimeController.GetDateTimeWithFormatAsync(System.String)">
+            <summary>
+            Gets DateTime custom of format.
+            </summary>
+            <returns>DateTime</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.EmailsController.Get">
+            <summary>
+            Gets random generated Email address.
+            </summary>
+            <returns>Email</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.GuidsController.GetUuuid">
+            <summary>
+            Gets random generated GUID.
+            </summary>
+            <returns>GUID</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.GuidsController.GetUuuidAsync(System.Int32)">
+            <summary>
+            Gets random generated the list of GUID.
+            </summary>
+            <returns>The list of GUID</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.ISO3166Controller.GetAll">
+            <summary>
+            Gets IISO3166 dataset.
+            </summary>
+            <returns>The list of IISO3166</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.NamesController.GetDateTime">
+            <summary>
+            Gets random the of Name.
+            </summary>
+            <returns>The of Name</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.SurnamesController.Get">
+            <summary>
+            Gets random the of Surname.
+            </summary>
+            <returns>The of Surname</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.TelephonesController.GetTelephonAsync">
+            <summary>
+            Gets random generated Telephon.
+            </summary>
+            <returns>Telephon</returns>
+        </member>
+        <member name="M:BroData.API.Controllers.v0.TelephonesController.GetTelephonAsync(System.Int32)">
+            <summary>
+            Gets random generated the list of Telephon.
+            </summary>
+            <returns>The list of Telephon</returns>
+            <param count="100">Max count: 100</param>     
+        </member>
+    </members>
+</doc>

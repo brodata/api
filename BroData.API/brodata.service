@@ -1,0 +1,14 @@
+[Unit]
+Description=BroData API server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/var/brodata/BroDataAPI
+Restart=always
+User=root
+Environment=NODE_ENV=production
+WorkingDirectory=/var/brodata
+
+[Install]
+WantedBy=multi-user.target

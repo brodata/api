@@ -7,26 +7,26 @@ namespace BroData.API.Controllers.v0
 {
     [Route("v0/[controller]")]
     [ApiController]
-    public class ISO3166Controller : ControllerBase
+    public class NamesController : ControllerBase
     {
-        private readonly IISO3166Service _i3166Service;
+        private readonly INameService _broNameService;
         private readonly IGetCallCounterService _getCallCounterService;
 
-        public ISO3166Controller(IISO3166Service i3166Service, IGetCallCounterService getCallCounterService)
+        public NamesController(INameService broNameService, IGetCallCounterService getCallCounterService)
         {
-            _i3166Service = i3166Service;
+            _broNameService = broNameService;
             _getCallCounterService = getCallCounterService;
         }
 
         /// <summary>
-        /// Gets IISO3166 dataset.
+        /// Gets random the of Name.
         /// </summary>
-        /// <returns>The list of IISO3166</returns>
+        /// <returns>The of Name</returns>
         [HttpGet]
-        async public Task<IActionResult> GetAll()
+        async public Task<IActionResult> GetDateTime()
         {
             await _getCallCounterService.UpdateCounter(HttpContext);
-            return await Task.FromResult(Ok(new Response<IISO3166>(await _i3166Service.GetAll())));
+            return await Task.FromResult(Ok(new Response<IName>(await _broNameService.GetRandom())));
         }
     }
 }

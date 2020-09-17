@@ -16,11 +16,12 @@ namespace BroData.API.Brokers
             modelBuilder.Entity<ISO3166>().HasNoKey();
             modelBuilder.Entity<Surname>().HasNoKey();
         }
-        
+
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<ISO3166> iSO3166s { get; set; }
         public DbSet<Name> Names { get; set; }
         public DbSet<Surname> Surnames { get; set; }
+        public DbSet<CallCounter> callCounters { get; set; }
     }
 }

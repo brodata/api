@@ -1,40 +1,57 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BroData.API.Brokers;
 using BroData.API.Service.v0;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using BroData.API.Brokers;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace BroData.API
 {
     public class Startup
     {
-
+        
         public IConfiguration Configuration { get; private set; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
         public Startup(IConfiguration configuration)
         {
+            
             Configuration = configuration;
         }
 
         public void InitialStorage(IServiceCollection services)
         {
-            services.AddDbContext<StorageBroker>(context => context.UseNpgsql(Configuration["ConnectionString"]));
+            string constr = Configuration["ConnectionString"];
+            services.AddDbContext<StorageBroker>(context => context.UseNpgsql(constr));
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v0", new OpenApiInfo
+                {
+                    Title = "BroData Open API",
+                    Version = "v0",
+                    Description = "Open Datasets for your projects ",
+                    Contact = new OpenApiContact
+                    {
+                        Url = new Uri("https://brodata.io"),
+                    },
 
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
             services.AddResponseCaching(options =>
             {
                 options.MaximumBodySize = 1024;
@@ -51,6 +68,9 @@ namespace BroData.API
             services.AddScoped<INameService, NameService>();
             services.AddTransient<ISurnameService, SurnameService>();
             services.AddTransient<IGenEmailService, GenEmailService>();
+            services.AddTransient<IGetCallCounterService, GetCallCounterService>();
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IStateService, StateService>();
 
             services.AddCors(options =>
             {
@@ -67,10 +87,10 @@ namespace BroData.API
                 Configuration.GetSection("Kestrel"));
 
 
-            
+
         }
 
-        
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -79,6 +99,15 @@ namespace BroData.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v0/swagger.json", "BroData Open API V0");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

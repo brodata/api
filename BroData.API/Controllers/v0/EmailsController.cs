@@ -7,26 +7,25 @@ namespace BroData.API.Controllers.v0
 {
     [Route("v0/[controller]")]
     [ApiController]
-    public class ISO3166Controller : ControllerBase
+    public class EmailsController : ControllerBase
     {
-        private readonly IISO3166Service _i3166Service;
+        private readonly IGenEmailService _genEmailService;
         private readonly IGetCallCounterService _getCallCounterService;
-
-        public ISO3166Controller(IISO3166Service i3166Service, IGetCallCounterService getCallCounterService)
+        public EmailsController(IGenEmailService genEmailService, IGetCallCounterService getCallCounterService)
         {
-            _i3166Service = i3166Service;
+            _genEmailService = genEmailService;
             _getCallCounterService = getCallCounterService;
-        }
 
+        }
         /// <summary>
-        /// Gets IISO3166 dataset.
+        /// Gets random generated Email address.
         /// </summary>
-        /// <returns>The list of IISO3166</returns>
+        /// <returns>Email</returns>
         [HttpGet]
-        async public Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get()
         {
             await _getCallCounterService.UpdateCounter(HttpContext);
-            return await Task.FromResult(Ok(new Response<IISO3166>(await _i3166Service.GetAll())));
+            return Ok(new Response<IEmail>(_genEmailService.Get()));
         }
     }
 }

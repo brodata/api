@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System;
 
 namespace BroData.API
 {
@@ -14,6 +10,7 @@ namespace BroData.API
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine();
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -33,7 +30,7 @@ namespace BroData.API
                             new MinDataRate(bytesPerSecond: 100,
                                 gracePeriod: TimeSpan.FromSeconds(10));
                         serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
-                        serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);    
+                        serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
                     })
                     .UseUrls("http://0.0.0.0:5000")
                     .UseStartup<Startup>();

@@ -11,21 +11,21 @@ namespace BroData.API.Service.v0
     {
         private readonly StorageBroker _context;
 
-        public ISO3166Service(StorageBroker context) => 
+        public ISO3166Service(StorageBroker context) =>
             _context = context;
 
         public async Task<IISO3166> GetByAlpha2(string alpha2) =>
-            await _context.iSO3166s.Where(x => x.alpha_2 == alpha2).SingleAsync();
+            await _context.iSO3166s.AsNoTracking().Where(x => x.alpha_2 == alpha2).SingleAsync();
 
         public async Task<IISO3166> GetByAlpha3(string alpha3) =>
-             await _context.iSO3166s.Where(x => x.alpha_2 == alpha3).SingleAsync();
+             await _context.iSO3166s.AsNoTracking().Where(x => x.alpha_2 == alpha3).SingleAsync();
 
-        IEnumerable<IISO3166> IISO3166Service.GetAll() => _context.iSO3166s.Where(x => true).ToList();
+        public async Task<IEnumerable<IISO3166>> GetAll() => await _context.iSO3166s.Where(x => true).ToListAsync();
     }
 
     public interface IISO3166Service
     {
-        IEnumerable<IISO3166> GetAll();
+        Task<IEnumerable<IISO3166>> GetAll();
         Task<IISO3166> GetByAlpha2(string alpha2);
         Task<IISO3166> GetByAlpha3(string alpha3);
     }
