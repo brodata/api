@@ -1,3 +1,4 @@
+using BroData.API.Datasets;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -10,7 +11,7 @@ namespace BroData.API
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine();
+            ISO3166Repo.Init(@"C:\Users\ruhex\Documents\dataset_iso3166.csv");
             CreateHostBuilder(args).Build().Run();
         }
 

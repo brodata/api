@@ -1,6 +1,8 @@
-﻿using BroData.API.Models.v0;
+﻿using BroData.API.Datasets;
+using BroData.API.Models.v0;
 using BroData.API.Service.v0;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BroData.API.Controllers.v0
@@ -9,24 +11,19 @@ namespace BroData.API.Controllers.v0
     [ApiController]
     public class ISO3166Controller : ControllerBase
     {
-        private readonly IISO3166Service _i3166Service;
-        private readonly IGetCallCounterService _getCallCounterService;
-
-        public ISO3166Controller(IISO3166Service i3166Service, IGetCallCounterService getCallCounterService)
-        {
-            _i3166Service = i3166Service;
-            _getCallCounterService = getCallCounterService;
-        }
+        
+        //private readonly IGetCallCounterService _getCallCounterService;
 
         /// <summary>
         /// Gets IISO3166 dataset.
         /// </summary>
         /// <returns>The list of IISO3166</returns>
         [HttpGet]
-        async public Task<IActionResult> GetAll()
+        public IEnumerable<IISO3166> GetAll()
         {
-            await _getCallCounterService.UpdateCounter(HttpContext);
-            return await Task.FromResult(Ok(new Response<IISO3166>(await _i3166Service.GetAll())));
+            //await _getCallCounterService.UpdateCounter(HttpContext);
+            return ISO3166Repo.GetAll();
+            //return await Task.FromResult(Ok(new Response<IISO3166>(await _i3166Service.GetAll())));
         }
     }
 }

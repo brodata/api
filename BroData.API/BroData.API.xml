@@ -80,8 +80,7 @@
             <summary>
             Gets random generated the list of Telephon.
             </summary>
-            <returns>The list of Telephon</returns>
-            <param count="100">Max count: 100</param>     
+            <returns>The list of Telephon</returns>   
         </member>
     </members>
 </doc>

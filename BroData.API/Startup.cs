@@ -1,4 +1,5 @@
 using BroData.API.Brokers;
+using BroData.API.Datasets;
 using BroData.API.Service.v0;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -64,7 +65,11 @@ namespace BroData.API
             services.AddSingleton<IGenPasswdService, GenPasswdService>();
             services.AddSingleton<IGenTelephonService, GenTelephonService>();
             services.AddScoped<ICityService, CityService>();
-            services.AddTransient<IISO3166Service, ISO3166Service>();
+
+            
+
+            //services.AddSingleton<IISO3166Repo, ISO3166Repo>();
+
             services.AddScoped<INameService, NameService>();
             services.AddTransient<ISurnameService, SurnameService>();
             services.AddTransient<IGenEmailService, GenEmailService>();
