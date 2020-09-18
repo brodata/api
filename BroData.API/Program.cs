@@ -14,6 +14,7 @@ namespace BroData.API
         {
             ISO3166Repo.Init(@"C:\Users\ruhex\Documents\dataset_iso3166.csv");
             NamesRepo.Init(@"C:\Users\ruhex\Documents\dataset_names.csv");
+            SurnamesRepo.Init(@"C:\Users\ruhex\Documents\dataset_surnames.csv");
             CreateHostBuilder(args).Build().Run();
         }
 
