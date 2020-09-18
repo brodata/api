@@ -58,7 +58,7 @@
             </summary>
             <returns>The list of IISO3166</returns>
         </member>
-        <member name="M:BroData.API.Controllers.v0.NamesController.GetDateTime">
+        <member name="M:BroData.API.Controllers.v0.NamesController.GetAll">
             <summary>
             Gets random the of Name.
             </summary>

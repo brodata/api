@@ -67,10 +67,6 @@ namespace BroData.API
             services.AddScoped<ICityService, CityService>();
 
             
-
-            //services.AddSingleton<IISO3166Repo, ISO3166Repo>();
-
-            services.AddScoped<INameService, NameService>();
             services.AddTransient<ISurnameService, SurnameService>();
             services.AddTransient<IGenEmailService, GenEmailService>();
             services.AddTransient<IGetCallCounterService, GetCallCounterService>();
