@@ -10,11 +10,9 @@ namespace BroData.API.Controllers.v0
     public class EmailsController : ControllerBase
     {
         private readonly IGenEmailService _genEmailService;
-        private readonly IGetCallCounterService _getCallCounterService;
-        public EmailsController(IGenEmailService genEmailService, IGetCallCounterService getCallCounterService)
+        public EmailsController(IGenEmailService genEmailService)
         {
             _genEmailService = genEmailService;
-            _getCallCounterService = getCallCounterService;
 
         }
         /// <summary>
@@ -22,10 +20,9 @@ namespace BroData.API.Controllers.v0
         /// </summary>
         /// <returns>Email</returns>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IEmail Get()
         {
-            await _getCallCounterService.UpdateCounter(HttpContext);
-            return Ok(new Response<IEmail>(_genEmailService.Get()));
+            return _genEmailService.Get();
         }
     }
 }
