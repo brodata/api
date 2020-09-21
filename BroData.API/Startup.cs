@@ -64,14 +64,12 @@ namespace BroData.API
             services.AddMvc();
             services.AddSingleton<IGenPasswdService, GenPasswdService>();
             services.AddSingleton<IGenTelephonService, GenTelephonService>();
-            services.AddScoped<ICityService, CityService>();
 
             
             services.AddTransient<ISurnameService, SurnameService>();
             services.AddTransient<IGenEmailService, GenEmailService>();
             services.AddTransient<IGetCallCounterService, GetCallCounterService>();
-            services.AddTransient<ICityService, CityService>();
-            services.AddTransient<IStateService, StateService>();
+            
 
             services.AddCors(options =>
             {
