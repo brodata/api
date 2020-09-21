@@ -1,9 +1,7 @@
 ﻿using BroData.API.Models.v0;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BroData.API.Service.v0
 {
@@ -19,7 +17,7 @@ namespace BroData.API.Service.v0
             return new Telephon(massiv);
         }
 
-        
+
         private string Gen(string code, int? len)
         {
             StringBuilder sb = new StringBuilder();

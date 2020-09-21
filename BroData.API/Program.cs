@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BroData.API.Data;
+using BroData.API.Datasets;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System;
 
 namespace BroData.API
 {
@@ -14,6 +12,11 @@ namespace BroData.API
     {
         public static void Main(string[] args)
         {
+            NamesRepo.Init("./csvs/dataset_names.csv");
+            ISO3166Repo.Init("./csvs/dataset_iso3166.csv");
+            SurnamesRepo.Init("./csvs/dataset_surnames.csv");
+            StatesRepo.Init("./csvs/dataset_us_states.csv");
+            CitiesRepo.Init("./csvs/dataset_us_cities.csv");
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -33,7 +36,7 @@ namespace BroData.API
                             new MinDataRate(bytesPerSecond: 100,
                                 gracePeriod: TimeSpan.FromSeconds(10));
                         serverOptions.Limits.KeepAliveTimeout = TimeSpan.FromMinutes(2);
-                        serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);    
+                        serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
                     })
                     .UseUrls("http://0.0.0.0:5000")
                     .UseStartup<Startup>();

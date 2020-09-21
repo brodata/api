@@ -4,30 +4,33 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BroData.API.Service.v0
 {
     public class GenPasswdService : IGenPasswdService
     {
-        public IPasswd Get(int count, int _length, int[] mask)
+        public IPassword Get(int _length, int[] mask)
         {
-            if (count == 1)
-                return new Passwd(new PasswordGenerator(_length, mask).GetPassword());
-            List<string> massiv = new List<string>();
-            for(int i = 0; i < count; i++)
-                massiv.Add(new PasswordGenerator(_length, mask).GetPassword());
-            return new Passwd(massiv);
+            return new Password { password = new PasswordGenerator(_length, mask).GetPassword() };
+        }
+
+        public IEnumerable<IPassword> Get(int count, int _length, int[] mask)
+        {
+            List<IPassword> massiv = new List<IPassword>();
+            for (int i = 0; i < count; i++)
+                massiv.Add(new Password { password = new PasswordGenerator(_length, mask).GetPassword() });
+            return massiv;
         }
     }
 
     public interface IGenPasswdService
     {
-        IPasswd Get(int count, int _length, int[] mask);
+        IPassword Get(int _length, int[] mask);
+        IEnumerable<IPassword> Get(int count, int _length, int[] mask);
 
     }
 
-    public class PasswordGenerator
+    internal class PasswordGenerator
     {
         private const int GenCharArrayCount = 512;
         private int Length { get; set; }
@@ -38,7 +41,7 @@ namespace BroData.API.Service.v0
 
         public PasswordGenerator(int _length, int[] mask)
         {
-            
+
             this.Length = _length;
             Number = mask[0] == 0 ? false : true;
             Lower = mask[1] == 0 ? false : true;

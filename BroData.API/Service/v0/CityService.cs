@@ -1,7 +1,6 @@
 ﻿using BroData.API.Brokers;
 using BroData.API.Models.v0;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,20 +11,27 @@ namespace BroData.API.Service.v0
     {
         private readonly StorageBroker _context;
         public CityService(StorageBroker context) => _context = context;
-        IEnumerable<ICity> ICityService.GetAll()
+
+        public async Task<IEnumerable<ICity>> GetAll()
         {
-            return _context.Cities.AsNoTracking().Where(x => true).ToList();
+            return await _context.Cities.AsNoTracking().Where(x => true).ToListAsync();
         }
 
-        async Task<IEnumerable<ICity>> ICityService.GetByState(string state)
+        public async Task<ICity> GetByID(int id)
         {
-            return await _context.Cities.AsNoTracking().Where(x => x.code == state.ToUpper()).ToListAsync();
+            return await _context.Cities.AsNoTracking().Where(x => x.id == id).FirstAsync();
+        }
+
+        public async Task<IEnumerable<ICity>> GetByState(string state)
+        {
+            return await _context.Cities.AsNoTracking().Where(x => x.state_code == state.ToUpper()).ToListAsync();
         }
     }
 
     public interface ICityService
     {
-        IEnumerable<ICity> GetAll();
+        Task<IEnumerable<ICity>> GetAll();
         Task<IEnumerable<ICity>> GetByState(string state);
+        Task<ICity> GetByID(int id);
     }
 }

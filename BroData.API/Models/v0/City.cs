@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BroData.API.Models.v0
 {
@@ -10,8 +6,7 @@ namespace BroData.API.Models.v0
     public class City : ICity
     {
         public int id { get; set; }
-        [Column("state_code")]
-        public string code { get; set; }
+        public string state_code { get; set; }
         public string county { get; set; }
         public string city { get; set; }
         public float latitude { get; set; }
@@ -21,7 +16,7 @@ namespace BroData.API.Models.v0
     public interface ICity
     {
         int id { get; set; }
-        string code { get; set; }
+        string state_code { get; set; }
         string county { get; set; }
         string city { get; set; }
         float latitude { get; set; }
