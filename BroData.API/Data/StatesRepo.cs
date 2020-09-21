@@ -22,14 +22,16 @@ namespace BroData.API.Data
                     string[] tmp_str_split = tmp_str.Split(',');
                     massiv.Add(new State
                     {
-                        name = tmp_str_split[1]
+                        id = Convert.ToInt32(tmp_str_split[0]),
+                        code = tmp_str_split[1],
+                        name = tmp_str_split[2]
                     });
 
                 }
                 catch (Exception e)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("Error: ");
+                    Console.Write("Error IState: ");
                     Console.ResetColor();
                     Console.WriteLine(e.Message);
 
