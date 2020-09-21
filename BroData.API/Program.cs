@@ -12,11 +12,11 @@ namespace BroData.API
     {
         public static void Main(string[] args)
         {
-            ISO3166Repo.Init(@"C:\Users\ruhex\Documents\dataset_iso3166.csv");
-            NamesRepo.Init(@"C:\Users\ruhex\Documents\dataset_names.csv");
-            SurnamesRepo.Init(@"C:\Users\ruhex\Documents\dataset_surnames.csv");
-            StatesRepo.Init(@"C:\Users\ruhex\Documents\dataset_us_states.csv");
-            CitiesRepo.Init(@"C:\Users\ruhex\Documents\dataset_us_cities.csv");
+            NamesRepo.Init("./csvs/dataset_names.csv");
+            ISO3166Repo.Init("./csvs/dataset_iso3166.csv");
+            SurnamesRepo.Init("./csvs/dataset_surnames.csv");
+            StatesRepo.Init("./csvs/dataset_us_states.csv");
+            CitiesRepo.Init("./csvs/dataset_us_cities.csv");
             CreateHostBuilder(args).Build().Run();
         }
 
