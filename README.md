@@ -1,10 +1,15 @@
+
+
+
 <div align="center">
     <a href="https://brodata.io/">
         <img src="https://brodata.io/img/brodata-hor-logo-01.png">
     </a>
 </div>
+
 <br />
 <br />
+
 <div align="center">
   
   [![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
@@ -13,12 +18,15 @@
   
 </div>
 
-## Folder Structure
+<br />
+<br />
+
+# Folder Structure
 
     .
     ├── BroData.API                 # API app
     │    ├── bin                    # 
-    │    ├── Brokers                # Classes implementing DbContext in EntityFrameworkCore (didn't use in this (NoDB) version)
+    │    ├── Brokers                # Classes implementing DbContext from EntityFrameworkCore 
     │    ├── Controllers            # Classes implementing REST API GET functions
     │    │    └── v0
     │    ├── Data                   # Classes implementing Data Repositories
@@ -34,7 +42,45 @@
 </br>
 </br>
 
-## REST  API
+# Usage
+1. Clone Project:
+```shell
+git clone https://github.com/brodata/api.git
+```
+2. Cd to BroData.API project
+```shell
+cd ./api/BroData.API/
+```
+
+3. Run command:
+```shell
+dotnet publish --runtime rhel-x64 /p:PublishSingleFile=true
+```
+This command compiled project for RedHat / CentOS
+
+If you use another platform, change the name (**rhel-x64**) to:
+
+RIDs        |
+------------|
+linux-x64 |
+win10-x64 |
+osx-x64   |
+
+More RID: https://docs.microsoft.com/en-us/dotnet/core/rid-catalog
+
+4. Copy csvs folder to directory with runtime file
+5. API available via url:
+```shell
+http://localhost:5000/v0/
+```
+
+<br />
+<br />
+
+
+
+
+# REST  API
 
 ### API Reference
 
